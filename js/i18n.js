@@ -16,7 +16,7 @@
 			'header.text3': 'Kampferprobt in den Bereichen Softwareentwicklung, DevOps und Qualitätssicherung und intransingent beim Troubleshooting.',
 			'about.heading': 'Auszeichnungen',
 			'about.text': 'Ausgewählte Badges von Open Group, IBM, Acclaim und Udemy',
-			'about.allbadges': 'see all 25 badges on credly',
+			'about.allbadges': 'Alle Badges bei credly',
 			'profile.heading': 'Profil / Interessen',
 			'profile.text': 'Ich verfüge über umfassende Kenntnisse und Erfahrungen in folgenden Technologien und Themen:',
 			'profile.li1': 'Modellierung von Softwarearchitekturen und BPM (PlantUML, TOGAF)',
