@@ -302,3 +302,36 @@ footer {
   padding-left: 28px;
   padding-right: 28px;
 }
+
+/* Language switcher: greyscale flags, aligned with nav text */
+#mainNav .lang-switch {
+  display: flex;
+  align-items: center;
+}
+
+#mainNav .lang-switch .nav-link {
+  padding: 0 .25rem;
+  font-size: 1.1rem;
+  line-height: 1;
+}
+
+#mainNav .lang-switch .nav-link img,
+#mainNav .lang-switch .nav-link {
+  filter: grayscale(100%);
+  opacity: 0.55;
+}
+
+#mainNav .lang-switch .nav-link.active {
+  filter: none;
+  opacity: 1;
+}
+
+#mainNav .lang-switch .nav-link:hover {
+  opacity: 0.9;
+}
+
+/* shrink-mode + mobile: keep flag size compact inside collapsed nav */
+#mainNav.navbar-shrink .lang-switch .nav-link {
+  padding: 0 .25rem;
+  border-bottom: none;
+}

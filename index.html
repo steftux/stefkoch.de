@@ -37,9 +37,13 @@
 			</button>
 			<div class="collapse navbar-collapse" id="navbarResponsive">
 				<ul class="navbar-nav ml-auto">
-					<li class="nav-item"><a class="nav-link js-scroll-trigger" href="#about">Auszeichnungen</a></li>
-					<li class="nav-item"><a class="nav-link js-scroll-trigger" href="#profile">Profil</a></li>
-					<li class="nav-item"><a class="nav-link js-scroll-trigger" href="#contact">Kontakt</a></li>
+					<li class="nav-item"><a class="nav-link js-scroll-trigger" data-i18n="nav.about" href="#about">Auszeichnungen</a></li>
+					<li class="nav-item"><a class="nav-link js-scroll-trigger" data-i18n="nav.profile" href="#profile">Profil</a></li>
+					<li class="nav-item"><a class="nav-link js-scroll-trigger" data-i18n="nav.contact" href="#contact">Kontakt</a></li>
+					<li class="nav-item lang-switch" aria-label="Sprache / Language">
+						<a class="nav-link" href="#" data-lang="de" title="Deutsch">🇩🇪</a>
+						<a class="nav-link" href="#" data-lang="en" title="English">🇬🇧</a>
+					</li>
 				</ul>
 			</div>
 		</div>
@@ -52,16 +56,13 @@
 				<div class="image-cropper"><img alt="Stefan Koch" src="img/StefanKoch-cube-500.png" class="rounded">
 				</div>
 				<br />
-				<h3 class="text-white ">
+				<h3 class="text-white " data-i18n="header.title">
 					Stefan Koch - Integration Architekt
 				</h3>
-				<p class="text-white-50 text-center ">
-					Zertifizierter IT-Architekt mit Erfahrung in Konzeption, Entwicklung, Test und Deployment von
-					Softwareprodukten.<br />
-					Tätig für 13 Jahre bei <a href="https://www.ibm.com/de-de/services">IBM</a> und seit 2020 bei der <a
-						href="https://codecentric.de">codecentric</a> aktiv im Bereich Digital Integration.<br />
-					Kampferprobt in den Bereichen Softwareentwicklung, DevOps und Qualitätssicherung und intransingent
-					beim Troubleshooting.
+				<p class="text-white-50 text-center">
+					<span data-i18n="header.text">Zertifizierter IT-Architekt mit Erfahrung in Konzeption, Entwicklung, Test und Deployment von Softwareprodukten.</span><br />
+					<span data-i18n="header.text2">Tätig für 13 Jahre bei <a href="https://www.ibm.com/de-de/services">IBM</a> und seit 2020 bei der <a href="https://codecentric.de">codecentric</a> aktiv im Bereich Digital Integration.</span><br />
+					<span data-i18n="header.text3">Kampferprobt in den Bereichen Softwareentwicklung, DevOps und Qualitätssicherung und intransingent beim Troubleshooting.</span>
 				</p>			
 			</div>
 		</div>
@@ -72,9 +73,9 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-8 mx-auto">
-					<h2 class="text-white mb-4">Auszeichnungen</h2>
+					<h2 class="text-white mb-4" data-i18n="about.heading">Auszeichnungen</h2>
 					<p class="text-white-50 text-center ">
-						Ausgewählte Badges von Open Group, IBM, Acclaim und Udemy<br /> <br />
+						<span data-i18n="about.text">Ausgewählte Badges von Open Group, IBM, Acclaim und Udemy</span><br /> <br />
 						<a href="https://www.credly.com/badges/06b34b44-6678-4109-a490-40e6e04e717d" target="_blank">
 							<img class="cr-standard-grid-item-content__image" alt=""
 								src="img/badge-openca-certified.png" height="110" width="110" /></a>
@@ -97,7 +98,7 @@
 							src="img/badges/ibm-garage-method-cloud-advocate.png"
 							height="110" width="110" /></a>
 						<br />
-						<a href="https://www.credly.com/users/stefan.koch/badges/credly" target="_blank"><em>see all 25 badges on credly</em></a>
+						<a href="https://www.credly.com/users/stefan.koch/badges/credly" target="_blank"><em data-i18n="about.allbadges">see all 25 badges on credly</em></a>
 					</p>
 				</div>
 			</div>
@@ -108,25 +109,19 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-8 mx-auto">
-					<h4 class="text-black mb-4">Profil / Interessen</h4>
-					<p class="text-black-50 mb-0">Ich verfüge über umfassende Kenntnisse und Erfahrungen in folgenden Technologien und Themen:</p>
+					<h4 class="text-black mb-4" data-i18n="profile.heading">Profil / Interessen</h4>
+					<p class="text-black-50 mb-0"><span data-i18n="profile.text">Ich verfüge über umfassende Kenntnisse und Erfahrungen in folgenden Technologien und Themen:</span></p>
 					<ul class="fa-ul text-black-50">
-						<li><span class="fa-li"><i class="fas fa-check"></i></span>Modellierung von
-							Softwarearchitekturen und BPM (PlantUML, TOGAF)</li>
-						<li><span class="fa-li"><i class="fas fa-check"></i></span>Agile Softwareentwicklung</li>
-						<li><span class="fa-li"><i class="fas fa-check"></i></span>Requirements
-							Engineering (IREB) und Design Thinking</li>
-						<li><span class="fa-li"><i class="fas fa-check"></i></span>Java JEE, Python, php, bash,
-							perl, tcl</li>
-						<li><span class="fa-li"><i class="fas fa-check"></i></span>MuleSoft, API-Design</li>
-						<li><span class="fa-li"><i class="fas fa-check"></i></span>Datenbanken, Netzwerke,
-							Protokolle</li>
-						<li><span class="fa-li"><i class="fas fa-check"></i></span>Debugging und Test</li>
-						<li><span class="fa-li"><i class="fas fa-check"></i></span>CI/CD (Gitlab, Azure, Rational,
-							Jenkins)</li>
-						<li><span class="fa-li"><i class="fas fa-check"></i></span>Cloud, Virtualisierung, Container (AWS, Azure, IBM Cloud, VMWare, k8s)
-						</li>
-						<li><span class="fa-li"><i class="fas fa-check"></i></span>Coaching und Mentoring</li>
+						<li><span class="fa-li"><i class="fas fa-check"></i></span><span data-i18n="profile.li1">Modellierung von Softwarearchitekturen und BPM (PlantUML, TOGAF)</span></li>
+						<li><span class="fa-li"><i class="fas fa-check"></i></span><span data-i18n="profile.li2">Agile Softwareentwicklung</span></li>
+						<li><span class="fa-li"><i class="fas fa-check"></i></span><span data-i18n="profile.li3">Requirements Engineering (IREB) und Design Thinking</span></li>
+						<li><span class="fa-li"><i class="fas fa-check"></i></span><span data-i18n="profile.li4">Java JEE, Python, php, bash, perl, tcl</span></li>
+						<li><span class="fa-li"><i class="fas fa-check"></i></span><span data-i18n="profile.li5">MuleSoft, API-Design</span></li>
+						<li><span class="fa-li"><i class="fas fa-check"></i></span><span data-i18n="profile.li6">Datenbanken, Netzwerke, Protokolle</span></li>
+						<li><span class="fa-li"><i class="fas fa-check"></i></span><span data-i18n="profile.li7">Debugging und Test</span></li>
+						<li><span class="fa-li"><i class="fas fa-check"></i></span><span data-i18n="profile.li8">CI/CD (Gitlab, Azure, Rational, Jenkins)</span></li>
+						<li><span class="fa-li"><i class="fas fa-check"></i></span><span data-i18n="profile.li9">Cloud, Virtualisierung, Container (AWS, Azure, IBM Cloud, VMWare, k8s)</span></li>
+						<li><span class="fa-li"><i class="fas fa-check"></i></span><span data-i18n="profile.li10">Coaching und Mentoring</span></li>
 					</ul>
 				</div>
 			</div>
@@ -141,7 +136,7 @@
 					<div class="card py-4 h-100">
 						<div class="card-body text-center">
 							<i class="fas fa-map-marked-alt text-primary mb-2"></i>
-							<h4 class="m-0">Adresse</h4>
+							<h4 class="m-0" data-i18n="contact.address">Adresse</h4>
 							<hr class="my-4">
 							<div class="small text-black-50">
 								Stefan Koch<br /> Birkenweg 8<br /> 22926 Ahrensburg
@@ -154,7 +149,7 @@
 					<div class="card py-4 h-100">
 						<div class="card-body text-center">
 							<i class="fas fa-envelope text-primary mb-2"></i>
-							<h4 class="m-0">Email</h4>
+							<h4 class="m-0" data-i18n="contact.email">Email</h4>
 							<hr class="my-4">
 							<div class="small text-black-50">
 								<script type="text/javascript">
@@ -175,7 +170,7 @@
 					<div class="card py-4 h-100">
 						<div class="card-body text-center">
 							<i class="fas fa-mobile-alt text-primary mb-2"></i>
-							<h4 class="m-0">Telefon</h4>
+							<h4 class="m-0" data-i18n="contact.phone">Telefon</h4>
 							<hr class="my-4">
 							<div class="small text-black-50">
 								<a href="tel:+4915125017934">+49 (151) 25017934</a>
@@ -208,6 +203,9 @@
 
 	<!-- Plugin JavaScript -->
 	<script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+
+	<!-- i18n -->
+	<script src="js/i18n.js"></script>
 
 	<!-- Custom scripts for this template -->
 	<script src="js/grayscale.min.js"></script>
