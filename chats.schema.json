@@ -1,0 +1,51 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "chats.schema.json",
+  "title": ".chats.json5 — project chat bindings",
+  "description": "Maps a project working directory to the Matrix rooms/spaces and Telegram chats/groups where discussion around that code happens. JSON5 files are parsed first, then validated against this schema (e.g. with ajv). telegram.topics is the forum-group discriminator: present = group with topics, absent = plain group.",
+  "type": "object",
+  "required": ["project"],
+  "properties": {
+    "$schema": { "type": "string", "description": "Reference to this schema file." },
+    "project": { "type": "string", "description": "Project name, usually the repo directory name." },
+    "matrix": {
+      "type": "object",
+      "properties": {
+        "spaceId": { "type": "string", "description": "Matrix space room id (!...).", "pattern": "^!" },
+        "spaceName": { "type": "string" },
+        "roomId": { "type": "string", "description": "Matrix discussion room id (!...).", "pattern": "^!" },
+        "roomName": { "type": "string" },
+        "homeserver": { "type": "string" }
+      },
+      "required": ["roomId"],
+      "additionalProperties": true
+    },
+    "telegram": {
+      "type": "object",
+      "description": "Telegram binding. topics present = forum/supergroup with topics; topics absent = plain group without topics.",
+      "properties": {
+        "groupId": { "type": "integer", "description": "Chat id. Basic groups -<n>, supergroups -100<n>." },
+        "groupName": { "type": "string" },
+        "botUsername": { "type": "string", "description": "Bot account in the group." },
+        "topics": {
+          "type": "array",
+          "description": "Forum topics of the group. Omit the key entirely for groups without topics.",
+          "items": {
+            "type": "object",
+            "required": ["id", "title"],
+            "properties": {
+              "id": { "type": "integer", "description": "message_thread_id. 1 = the implicit General topic (Telegram omits message_thread_id on General messages)." },
+              "title": { "type": "string" },
+              "iconColor": { "type": "integer", "description": "From forum_topic_created." },
+              "general": { "type": "boolean", "description": "true for the implicit General topic." }
+            },
+            "additionalProperties": true
+          }
+        }
+      },
+      "required": ["groupId"],
+      "additionalProperties": true
+    }
+  },
+  "additionalProperties": true
+}
