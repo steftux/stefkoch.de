@@ -1,0 +1,15 @@
+// Chat bindings for the stefkoch.de project.
+// Schema: ../skills/chats.schema.json (JSON Schema; validate the parsed
+// JSON5 document against it, e.g. with ajv).
+//
+// This group is a plain group WITHOUT topics — note the absent "topics" key.
+
+{
+  $schema: "../skills/chats.schema.json",
+  project: "stefkoch.de",
+
+  telegram: {
+    groupId: -5534352129, // basic group "stefkoch.de" (no topics)
+    groupName: "stefkoch.de",
+  },
+}
