@@ -1,49 +1,177 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "chats.schema.json",
-  "title": ".chats.json5 — project chat bindings",
-  "description": "Maps a project working directory to the Matrix rooms/spaces and Telegram chats/groups where discussion around that code happens. JSON5 files are parsed first, then validated against this schema (e.g. with ajv). telegram.topics is the forum-group discriminator: present = group with topics, absent = plain group.",
+  "title": ".chats.json5 \u2014 project chat bindings",
+  "description": "Maps a project working directory to the chat rooms/groups where discussion around that code happens (Matrix, Telegram, IRC, Slack, Discord \u2014 any subset). JSON5 files are parsed first, then validated against this schema (e.g. with ajv). telegram.topics is the forum-group discriminator: present = group with topics, absent = plain group. Every chat block is optional; a block's presence binds that channel for the project.",
   "type": "object",
-  "required": ["project"],
+  "required": [
+    "project"
+  ],
   "properties": {
-    "$schema": { "type": "string", "description": "Reference to this schema file." },
-    "project": { "type": "string", "description": "Project name, usually the repo directory name." },
+    "$schema": {
+      "type": "string",
+      "description": "Reference to this schema file."
+    },
+    "project": {
+      "type": "string",
+      "description": "Project name, usually the repo directory name."
+    },
     "matrix": {
       "type": "object",
       "properties": {
-        "spaceId": { "type": "string", "description": "Matrix space room id (!...).", "pattern": "^!" },
-        "spaceName": { "type": "string" },
-        "roomId": { "type": "string", "description": "Matrix discussion room id (!...).", "pattern": "^!" },
-        "roomName": { "type": "string" },
-        "homeserver": { "type": "string" }
+        "spaceId": {
+          "type": "string",
+          "description": "Matrix space room id (!...).",
+          "pattern": "^!"
+        },
+        "spaceName": {
+          "type": "string"
+        },
+        "roomId": {
+          "type": "string",
+          "description": "Matrix discussion room id (!...).",
+          "pattern": "^!"
+        },
+        "roomName": {
+          "type": "string"
+        },
+        "homeserver": {
+          "type": "string"
+        }
       },
-      "required": ["roomId"],
+      "required": [
+        "roomId"
+      ],
       "additionalProperties": true
     },
     "telegram": {
       "type": "object",
       "description": "Telegram binding. topics present = forum/supergroup with topics; topics absent = plain group without topics.",
       "properties": {
-        "groupId": { "type": "integer", "description": "Chat id. Basic groups -<n>, supergroups -100<n>." },
-        "groupName": { "type": "string" },
-        "botUsername": { "type": "string", "description": "Bot account in the group." },
+        "groupId": {
+          "type": "integer",
+          "description": "Chat id. Basic groups -<n>, supergroups -100<n>."
+        },
+        "groupName": {
+          "type": "string"
+        },
+        "botUsername": {
+          "type": "string",
+          "description": "Bot account in the group."
+        },
         "topics": {
           "type": "array",
           "description": "Forum topics of the group. Omit the key entirely for groups without topics.",
           "items": {
             "type": "object",
-            "required": ["id", "title"],
+            "required": [
+              "id",
+              "title"
+            ],
             "properties": {
-              "id": { "type": "integer", "description": "message_thread_id. 1 = the implicit General topic (Telegram omits message_thread_id on General messages)." },
-              "title": { "type": "string" },
-              "iconColor": { "type": "integer", "description": "From forum_topic_created." },
-              "general": { "type": "boolean", "description": "true for the implicit General topic." }
+              "id": {
+                "type": "integer",
+                "description": "message_thread_id. 1 = the implicit General topic (Telegram omits message_thread_id on General messages)."
+              },
+              "title": {
+                "type": "string"
+              },
+              "iconColor": {
+                "type": "integer",
+                "description": "From forum_topic_created."
+              },
+              "general": {
+                "type": "boolean",
+                "description": "true for the implicit General topic."
+              }
             },
             "additionalProperties": true
           }
         }
       },
-      "required": ["groupId"],
+      "required": [
+        "groupId"
+      ],
+      "additionalProperties": true
+    },
+    "irc": {
+      "type": "object",
+      "description": "IRC binding. IRC has no global ids: a network is named (often exposed via the NETWORK= ISUPPORT 005 numeric) and you connect to a specific server host; channels are #name (case-insensitive per casemapping). Identify by network + server + channel.",
+      "properties": {
+        "network": {
+          "type": "string",
+          "description": "Network name, e.g. 'libera' (from NETWORK= 005 numeric or convention)."
+        },
+        "server": {
+          "type": "string",
+          "description": "Server host used to connect, e.g. 'irc.libera.chat' (optionally with :port)."
+        },
+        "channel": {
+          "type": "string",
+          "description": "Channel name including prefix, e.g. '#floop'.",
+          "pattern": "^[#&]"
+        }
+      },
+      "required": [
+        "network",
+        "channel"
+      ],
+      "additionalProperties": true
+    },
+    "slack": {
+      "type": "object",
+      "description": "Slack binding. Slack identifies workspaces (T-prefixed team id) and conversations via conversations.list: public channels C\u2026, private channels/groups G\u2026, DMs D\u2026. Ids are uppercase alphanumeric.",
+      "properties": {
+        "workspaceId": {
+          "type": "string",
+          "description": "Team/workspace id, T-prefixed (e.g. T0B7JBCDKC1). Shown in the workspace URL app.slack.com/client/<T\u2026>/<C\u2026>.",
+          "pattern": "^T[A-Z0-9]+$"
+        },
+        "workspaceUrl": {
+          "type": "string",
+          "description": "Workspace subdomain, e.g. 'myteam' for myteam.slack.com."
+        },
+        "channelId": {
+          "type": "string",
+          "description": "Conversation id: C\u2026 public channel, G\u2026 private channel/group, D\u2026 DM.",
+          "pattern": "^[CGD][A-Z0-9]+$"
+        },
+        "channelName": {
+          "type": "string",
+          "description": "Human-readable channel name without #."
+        }
+      },
+      "required": [
+        "workspaceId",
+        "channelId"
+      ],
+      "additionalProperties": true
+    },
+    "discord": {
+      "type": "object",
+      "description": "Discord binding. Discord ids are 64-bit snowflakes, ALWAYS carried as strings (uint64 overflows JS safe integers). A channel is identified by guild_id + channel id.",
+      "properties": {
+        "guildId": {
+          "type": "string",
+          "description": "Guild (server) snowflake id as a string.",
+          "pattern": "^[0-9]+$"
+        },
+        "guildName": {
+          "type": "string"
+        },
+        "channelId": {
+          "type": "string",
+          "description": "Channel snowflake id as a string.",
+          "pattern": "^[0-9]+$"
+        },
+        "channelName": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "guildId",
+        "channelId"
+      ],
       "additionalProperties": true
     }
   },
