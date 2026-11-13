@@ -173,6 +173,38 @@
         "channelId"
       ],
       "additionalProperties": true
+    },
+    "teams": {
+      "type": "object",
+      "description": "Microsoft Teams binding (Graph API). A channel is identified by team id + channel id, both opaque GUID strings (GET /teams/{team-id}/channels/{channel-id}). team id == the id of the team's Microsoft 365 group. Messages inside a channel additionally carry a threadId (reply chains) \u2014 use only when binding to a specific reply chain.",
+      "properties": {
+        "teamId": {
+          "type": "string",
+          "description": "Team GUID (Graph: GET /teams/{team-id}/channels). Same id as the team's Microsoft 365 group.",
+          "pattern": "^[0-9a-fA-F-]{36}$"
+        },
+        "teamName": {
+          "type": "string"
+        },
+        "channelId": {
+          "type": "string",
+          "description": "Channel GUID (Graph: GET /teams/{team-id}/channels/{channel-id}) \u2014 or the 19:<id>@thread.tacv2 form used by message/thread contexts.",
+          "pattern": "^([0-9a-fA-F-]{36}|19:[^@]+@thread\\.tacv2)$"
+        },
+        "channelName": {
+          "type": "string",
+          "description": "Human-readable channel name (e.g. 'General')."
+        },
+        "threadId": {
+          "type": "string",
+          "description": "OPTIONAL reply-chain id \u2014 bind to a specific thread inside the channel instead of the whole channel (chatInfo.threadId)."
+        }
+      },
+      "required": [
+        "teamId",
+        "channelId"
+      ],
+      "additionalProperties": true
     }
   },
   "additionalProperties": true
